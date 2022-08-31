@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/NavBar';
 
 function App() {
+
+  let desafio = "Ecommerce";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hola a todos.
+    <>
+      <NavBar/>
+      <div className="App">
+        {/* Estilos en linea */}
+        <p style={
+          {
+            color: "salmon",
+            paddingTop: "10px",
+          }
+        }>
+          Bienvenidos al {desafio}!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Comision 38080
-        </a>
-      </header>
-    </div>
+        <input placeholder='Ingrese algun contenido'/>
+      </div>
+    </>
   );
 }
 
