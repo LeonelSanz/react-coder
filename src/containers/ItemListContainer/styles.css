@@ -1,0 +1,8 @@
+.item-list-container {
+    background-color: beige;
+    color: salmon;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

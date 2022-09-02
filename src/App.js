@@ -1,23 +1,14 @@
 import './App.css';
 import NavBar from './components/NavBar';
+import ItemListContainer from './containers/ItemListContainer';
 
 function App() {
-
-  let desafio = "Ecommerce";
 
   return (
     <>
       <NavBar/>
       <div className="App">
-        {/* Estilos en linea */}
-        <p style={
-          {
-            color: "salmon",
-            paddingTop: "10px",
-          }
-        }>
-          Bienvenidos al {desafio}!
-        </p>
+      <ItemListContainer greeting={"Bienvenidos al Ecommerce"} />
         <input placeholder='Ingrese algun contenido'/>
       </div>
     </>
