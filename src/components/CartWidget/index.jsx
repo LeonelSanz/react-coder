@@ -5,7 +5,7 @@ import './styles.css';
 const CartWidget = () => {
   return (
     <div className='shopping-cart'>
-        <HiShoppingCart size={40} />
+        <HiShoppingCart size={30} />
     </div>
   )
 }

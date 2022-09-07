@@ -9,7 +9,6 @@ function App() {
       <NavBar/>
       <div className="App">
       <ItemListContainer greeting={"Bienvenidos al Ecommerce"} />
-        <input placeholder='Ingrese algun contenido'/>
       </div>
     </>
   );
