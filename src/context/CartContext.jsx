@@ -33,8 +33,8 @@ const CartContext = ({children}) => {
         return cart.some(product => product.id === id);
     }
 
-    const removeItem = (id) => {
-        const removedCart = cart.filter(product => product.id !== id);
+    const removeItem = (itemRemove) => {
+        const removedCart = cart.filter(product => product !== itemRemove);
         setCart(removedCart);
     }
 
@@ -42,8 +42,16 @@ const CartContext = ({children}) => {
         setCart([]);
     }
 
+    const totalPrice = () => {
+        return cart.reduce((prev, act) => prev + act.quantity * act.price, 0);
+    }
+
+    const totalProducts = () => {
+        return cart.reduce((prev, act) => prev + act.quantity, 0);
+    }
+
     return (
-        <Shop.Provider value={{cart, addItem, removeItem, clearCart}}>
+        <Shop.Provider value={{cart, addItem, removeItem, clearCart, totalPrice, totalProducts}}>
             {children}
         </Shop.Provider>
     )
