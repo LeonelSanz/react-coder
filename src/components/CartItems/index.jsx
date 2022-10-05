@@ -2,13 +2,16 @@ import './styles.css';
 import React from 'react';
 import { useContext } from 'react';
 import { Shop } from '../../context/CartContext';
+import ordenGenerada from "../../services/generarOrden";
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
+import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { db } from '../../firebase/config';
 
 const CartItems = () => {
 
-  const {cart, removeItem, clearCart} = useContext(Shop);
+  const {cart, removeItem, clearCart, totalPrice} = useContext(Shop);
 
   const renderImage = (image) => {
     return(
@@ -24,6 +27,35 @@ const CartItems = () => {
       </Button>
     )
   }
+
+  const handleBuy = async () => {
+    const importeTotal = totalPrice();
+    const orden = ordenGenerada(
+      "Leonel",
+      "leo@live.com",
+      1111111111,
+      cart,
+      importeTotal
+    );
+    console.log(orden);
+
+    const docRef = await addDoc(collection(db, "orders"), orden);
+
+    // Actualizamos el stock del producto
+    cart.forEach(async (productoEnCarrito) => {
+      //Primero accedemos a la referencia del producto
+      const productRef = doc(db, "products", productoEnCarrito.id);
+      //Llamamos al snapshot, llamando a firebase
+      const productSnap = await getDoc(productRef);
+      //En snapshot.data() no devuelve la informacion del documento a actualizar
+      await updateDoc(productRef, {
+        stock: productSnap.data().stock - productoEnCarrito.quantity,
+      });
+    });
+    alert(
+      `Gracias por su compra! se genero la orden generada con ID:  ${docRef.id}`
+    );
+  };
 
   const columns = [
     { field: 'image', width: 400, height: 400, renderCell: renderImage},
@@ -69,6 +101,7 @@ const CartItems = () => {
               }}
             />
             <Button onClick={clearCart} color="error" variant="outlined">Clear cart</Button>
+            <Button onClick={handleBuy}>Confirmar compra</Button>
           </div>
         }
     </section>

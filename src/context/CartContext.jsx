@@ -43,7 +43,8 @@ const CartContext = ({children}) => {
     }
 
     const totalPrice = () => {
-        return cart.reduce((prev, act) => prev + act.quantity * act.price, 0);
+        const total = cart.reduce((prev, act) => prev += act.quantity * act.price, 0);
+        return total;
     }
 
     const totalProducts = () => {
