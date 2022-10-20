@@ -1,13 +1,13 @@
-import './styles.css';
 import React from 'react';
 import { useContext } from 'react';
+
+import './styles.css';
 import { Shop } from '../../context/CartContext';
-import ordenGenerada from "../../services/generarOrden";
+
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
-import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { db } from '../../firebase/config';
+
 
 const CartItems = () => {
 
@@ -27,35 +27,6 @@ const CartItems = () => {
       </Button>
     )
   }
-
-  const handleBuy = async () => {
-    const importeTotal = totalPrice();
-    const orden = ordenGenerada(
-      "Leonel",
-      "leo@live.com",
-      1111111111,
-      cart,
-      importeTotal
-    );
-    console.log(orden);
-
-    const docRef = await addDoc(collection(db, "orders"), orden);
-
-    // Actualizamos el stock del producto
-    cart.forEach(async (productoEnCarrito) => {
-      //Primero accedemos a la referencia del producto
-      const productRef = doc(db, "products", productoEnCarrito.id);
-      //Llamamos al snapshot, llamando a firebase
-      const productSnap = await getDoc(productRef);
-      //En snapshot.data() no devuelve la informacion del documento a actualizar
-      await updateDoc(productRef, {
-        stock: productSnap.data().stock - productoEnCarrito.quantity,
-      });
-    });
-    alert(
-      `Gracias por su compra! se genero la orden generada con ID:  ${docRef.id}`
-    );
-  };
 
   const columns = [
     { field: 'image', width: 400, height: 400, renderCell: renderImage},
@@ -86,8 +57,8 @@ const CartItems = () => {
     <section className='cart-shop'>
         {!cart.length 
         ? <div>
-            <p>No hay productos en el carrito</p>
-            <Link to="/"><button>Volver al home</button></Link>
+            <p className="no-products">No hay productos en el carrito</p>
+            <Link to="/" className="no-products-link"><button>Volver al home</button></Link>
           </div>
         
         : <div className='data-grid' style={{ height: 400, width: '100%' }}>
@@ -97,11 +68,16 @@ const CartItems = () => {
               pageSize={5}
               rowsPerPageOptions={[5]}
               sx={{
-                color: 'white',
+                color: 'black',
               }}
             />
-            <Button onClick={clearCart} color="error" variant="outlined">Clear cart</Button>
-            <Button onClick={handleBuy}>Confirmar compra</Button>
+            <div className='button-confirm'>
+              <Button onClick={clearCart} color="error" variant="outlined">Clear cart</Button>
+              <Button color="error" variant="outlined"><Link to="/cart/checkout">Confirmar compra</Link></Button>
+            </div>
+            <div className='cart-totals'>
+              <p>Total: {totalPrice().toFixed(2)}$</p>
+            </div>
           </div>
         }
     </section>

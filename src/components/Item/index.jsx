@@ -1,7 +1,9 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
+
 import './styles.css';
+
+import Card from "react-bootstrap/Card";
 
 const Item = ({ product }) => {
     const navigate = useNavigate();

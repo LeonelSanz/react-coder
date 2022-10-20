@@ -3,26 +3,28 @@ ul {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    height: 60px;
     overflow: hidden;
-    border: 1px solid white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     background-color: rgba(124, 8, 8, 0.932);
-}
-
-li {
-    float: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 li a {
     display: block;
-    color: #ddd;
+    color: #DCDCDC;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 25px;
     text-decoration: none;
 }
 
 li a:hover {
-    background-color: black;
+    color: rgba(255, 255, 255, 0.521);
+    border-radius: 15px;
 }
 
 .logo{
@@ -30,12 +32,11 @@ li a:hover {
 }
 
 .cart-widget {
-    width: 320px;
+    width: 120px;
     text-align: end;
-    font-size: 2.5rem;
+    font-size: 2.4rem;
 }
 .cart-widget a {
     display: inline-block;
     transition: transform 0.3 ease;
-
-    }
+}

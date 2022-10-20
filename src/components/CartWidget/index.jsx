@@ -1,8 +1,10 @@
 import React from 'react';
 import { useContext } from 'react';
-import {HiShoppingCart} from 'react-icons/hi';
+
 import './styles.css';
 import { Shop } from '../../context/CartContext';
+
+import {HiShoppingCart} from 'react-icons/hi';
 
 const CartWidget = () => {
 
@@ -12,7 +14,7 @@ const CartWidget = () => {
     <div className='shopping-cart'>
         <HiShoppingCart size={30} />
         {totalProducts() !== 0 
-        ? <div>
+        ? <div className="total-products">
           {totalProducts()}
         </div>
         : ""}

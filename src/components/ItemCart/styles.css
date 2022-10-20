@@ -1,0 +1,36 @@
+.checkout-items{
+    display: flex;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    gap: 5px;
+}
+
+.cart-product{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 5px;
+    border-right: 2px solid rgba(124, 8, 8, 0.932);
+}
+
+.remove-button{
+    text-decoration: none;
+}
+
+.remove-button:hover{
+    color: red;
+}
+
+.checkout-items-end{
+    display: flex;
+    float: right;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    gap: 5px;
+}

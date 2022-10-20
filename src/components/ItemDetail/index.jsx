@@ -2,9 +2,10 @@ import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+
+import './styles.css';
 import { Shop } from '../../context/CartContext';
 import ItemCount from '../ItemCount';
-import './styles.css';
 
 const ItemDetail = ({ product }) => {
 

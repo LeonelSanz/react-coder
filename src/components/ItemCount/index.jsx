@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
+
 import "./styles.css";
+
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import { BsCartPlusFill } from "react-icons/bs";
